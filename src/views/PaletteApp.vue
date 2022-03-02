@@ -12,13 +12,13 @@
     <div class="colors-container">
       <div
         class="mini-palette"
-        v-on:click="showColor(color)"
+        v-for="color in colors"
+        :key="color"
         v-bind:style="{
-          backgroundColor: 'rgba(${color.red},${color.green},200,0.5)',
+          backgroundColor: `rgba(${color.red},${color.green},200,0.5)`,
         }"
-      >
-        この部分を上記に入れるとエラーになる⇨ v-for="color in colors" >
-      </div>
+        v-on:click="showColor(color)"
+      ></div>
     </div>
   </div>
 </template>
