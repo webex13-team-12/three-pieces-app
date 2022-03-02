@@ -2,37 +2,41 @@
   <h1>Vue メモ</h1>
   <div class="memo-list">
     <ul class="memo-list__container">
-      <li class="memo">
-        <div class="memo__checkbox">
-          <input type="checkbox" />
-        </div>
-        <div class="memo__text">ひき肉を300g買う</div>
-        <button class="memo__delete">削除</button>
-      </li>
-      <li class="memo">
-        <div class="memo__checkbox">
-          <input type="checkbox" />
-        </div>
-        <div class="memo__text">ホウレンソウを1束買う</div>
-        <button class="memo__delete">削除</button>
-      </li>
-      <li class="memo">
-        <div class="memo__checkbox">
-          <input type="checkbox" />
-        </div>
-        <div class="memo__text">ピーマンを2個買う</div>
-        <button class="memo__delete">削除</button>
-      </li>
+      <Memo
+        v-for="memo in memos"
+        v-bind:key="memo.id"
+        v-bind:memo="memo"
+        @my-click="reflectNum"
+      />
     </ul>
     <div class="add-memo-field">
-      <input class="add-memo-field__input" type="text" />
-      <button class="add-memo-field__button">追加</button>
+      <input class="add-memo-field__input" type="text" v-model="inputMemo" />
+      <button v-on:click="addMemo" class="add-memo-field__button">追加</button>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import Memo from "@/components/Memo.vue"
+export default {
+  components: { Memo },
+  data() {
+    return {
+      memos: [],
+      inputMemo: "",
+    }
+  },
+  methods: {
+    addMemo() {
+      let memo = { id: this.memos.length, text: this.inputMemo }
+      this.inputMemo = ""
+      this.memos.push(memo)
+    },
+    reflectNum(id) {
+      this.memos.splice(id, 1)
+    },
+  },
+}
 </script>
 
 <style scoped>
