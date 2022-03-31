@@ -3,7 +3,7 @@
   <div id="app">
     <h2>Q.{{ quiz.text }}</h2>
     <h3>ヒント：東京上野の不忍池を洋画で描いた人物です。</h3>
-    <img id="quizImage" v-bind:src="quizImagePath" v-bind:alt="quiz.text" />
+    <img id="quiz-image" v-bind:src="quizImagePath" v-bind:alt="quiz.text" />
     <div class="container">
       <button
         v-for="(choice, i) in quiz.choices"
@@ -24,7 +24,7 @@ export default {
       feedback: "",
       quiz: {
         text: "日本で初めてコーヒーミルを作ったとされる人物はどれでしょう？",
-        image: "Coffee MIll.jpg",
+        image: "Coffee Mill.jpg",
         choices: [
           {
             text: "平賀源内",
@@ -74,8 +74,8 @@ export default {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 #quiz-image {
-  height: 300px;
-  width: 300px;
+  height: 800px;
+  width: 800px;
   object-fit: contain;
 }
 .container {
